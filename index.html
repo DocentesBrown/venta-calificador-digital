@@ -499,7 +499,7 @@
             <div class="device-notch"></div>
             <div class="device-screen">
               <!-- Reemplazá por tu captura principal si querés -->
-              <img id="heroPhoneImg" src="./Imagen1.jpg" alt="App Docentes Brown - asistencia de estudiantes" onerror="this.src='./Imagen2.jpg'" />
+              <img id="heroPhoneImg" src="" alt="App Docentes Brown - asistencia de estudiantes" />
             </div>
           </div>
         </div>
@@ -549,21 +549,21 @@
           </div>
           <div class="gallery-main">
             <div class="zoom-stage">
-              <img id="mainMediaImg" src="./Imagen1.jpg" alt="Captura de la app" onerror="this.src='./Imagen2.jpg'" />
+              <img id="mainMediaImg" src="" alt="Captura de la app" />
               <div class="zoom-overlay">
                 <strong id="overlayTitle">Asistencia y seguimiento en una sola vista</strong>
                 <span id="overlaySub">Ideal para registrar y consultar rápidamente en clase.</span>
               </div>
             </div>
             <div class="thumbs" id="thumbs">
-              <button class="thumb active" type="button" data-kind="image" data-src="./Imagen1.jpg" data-fallback="./Imagen2.jpg" data-title="Pantalla principal" data-sub="Vista general de estudiantes y porcentajes" data-overlay-title="Asistencia y seguimiento en una sola vista" data-overlay-sub="Ideal para registrar y consultar rápidamente en clase.">
-                <img src="./Imagen1.jpg" alt="Miniatura principal" onerror="this.src='./Imagen2.jpg'" />
+              <button class="thumb active" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img1" data-title="Pantalla principal" data-sub="Vista general de estudiantes y porcentajes" data-overlay-title="Asistencia y seguimiento en una sola vista" data-overlay-sub="Ideal para registrar y consultar rápidamente en clase.">
+                <img src="" alt="Miniatura principal" data-thumb-key="img1" />
               </button>
-              <button class="thumb" type="button" data-kind="image" data-src="./Imagen2.jpg" data-fallback="./Imagen1.jpg" data-title="Tarjeta de toma de asistencia" data-sub="Acciones visibles y claras por estudiante" data-overlay-title="Botones grandes para decidir rápido" data-overlay-sub="Presente, ausente y revisar más tarde, todo en una tarjeta enfocada.">
-                <img src="./Imagen2.jpg" alt="Miniatura tarjeta" onerror="this.src='./Imagen1.jpg'" />
+              <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img2" data-title="Tarjeta de toma de asistencia" data-sub="Acciones visibles y claras por estudiante" data-overlay-title="Botones grandes para decidir rápido" data-overlay-sub="Presente, ausente y revisar más tarde, todo en una tarjeta enfocada.">
+                <img src="" alt="Miniatura tarjeta" data-thumb-key="img2" />
               </button>
-              <button class="thumb play" type="button" data-kind="video" data-src="./Video1.mp4" data-title="Video demo" data-sub="Mostrá el flujo real de uso" data-overlay-title="Demostración en movimiento" data-overlay-sub="Una mini demo vende mejor que mil explicaciones.">
-                <img src="./Imagen1.jpg" alt="Ver video demo" onerror="this.src='./Imagen2.jpg'" />
+              <button class="thumb play" type="button" data-kind="video" data-src="" data-media-key="video1" data-title="Video demo" data-sub="Mostrá el flujo real de uso" data-overlay-title="Demostración en movimiento" data-overlay-sub="Una mini demo vende mejor que mil explicaciones.">
+                <img src="" alt="Ver video demo" data-thumb-key="img1" />
               </button>
             </div>
           </div>
@@ -649,13 +649,95 @@
         <button class="icon-btn" id="closeModal" type="button" aria-label="Cerrar">✕</button>
       </div>
       <video id="demoVideo" controls playsinline preload="metadata">
-        <source src="./Video1.mp4" type="video/mp4" />
+        <source src="" type="video/mp4" />
         Tu navegador no soporta video HTML5.
       </video>
     </div>
   </div>
 
   <script>
+    // Media resolver (soporta mayúsculas/minúsculas y project pages de GitHub)
+    const MEDIA_CANDIDATES = {
+      img1: ['Imagen1.jpg','Imagen1.jpeg','imagen1.jpg','imagen1.jpeg','Imagen1.JPG','Imagen1.JPEG'],
+      img2: ['Imagen2.jpg','Imagen2.jpeg','imagen2.jpg','imagen2.jpeg','Imagen2.JPG','Imagen2.JPEG'],
+      video1: ['Video1.mp4','video1.mp4','Video1.MP4']
+    };
+
+    function getBaseCandidates(){
+      const path = location.pathname || '/';
+      const parts = path.split('/').filter(Boolean);
+      const repoBase = parts.length > 0 ? `/${parts[0]}/` : '/';
+      return ['./', repoBase, '/'];
+    }
+
+    function probeUrl(url){
+      return new Promise((resolve)=>{
+        const isVideo = /\.mp4$/i.test(url);
+        if(isVideo){
+          const v = document.createElement('video');
+          v.preload = 'metadata';
+          v.onloadedmetadata = ()=> resolve(url);
+          v.onerror = ()=> resolve(null);
+          v.src = url;
+          return;
+        }
+        const img = new Image();
+        img.onload = ()=> resolve(url);
+        img.onerror = ()=> resolve(null);
+        img.src = url;
+      });
+    }
+
+    async function resolveMedia(key){
+      const bases = getBaseCandidates();
+      const names = MEDIA_CANDIDATES[key] || [];
+      for (const base of bases){
+        for (const name of names){
+          const url = `${base}${name}`.replace(/\/\//g,'/').replace(':/','://');
+          const ok = await probeUrl(url);
+          if(ok) return ok;
+        }
+      }
+      return null;
+    }
+
+    async function initMedia(){
+      const [img1, img2, video1] = await Promise.all([
+        resolveMedia('img1'), resolveMedia('img2'), resolveMedia('video1')
+      ]);
+
+      const fallback1 = img1 || img2 || '';
+      const fallback2 = img2 || img1 || '';
+
+      const heroPhoneImg = document.getElementById('heroPhoneImg');
+      const mainMediaImg = document.getElementById('mainMediaImg');
+      if(heroPhoneImg) heroPhoneImg.src = fallback1;
+      if(mainMediaImg) mainMediaImg.src = fallback1;
+
+      document.querySelectorAll('[data-thumb-key="img1"]').forEach(el => el.src = fallback1);
+      document.querySelectorAll('[data-thumb-key="img2"]').forEach(el => el.src = fallback2);
+
+      document.querySelectorAll('.thumb[data-media-key="img1"]').forEach(btn => {
+        btn.dataset.src = fallback1;
+        btn.dataset.fallback = fallback2;
+      });
+      document.querySelectorAll('.thumb[data-media-key="img2"]').forEach(btn => {
+        btn.dataset.src = fallback2;
+        btn.dataset.fallback = fallback1;
+      });
+      document.querySelectorAll('.thumb[data-media-key="video1"]').forEach(btn => {
+        if(video1) btn.dataset.src = video1;
+      });
+
+      const videoSource = document.querySelector('#demoVideo source');
+      if(videoSource && video1){
+        videoSource.src = video1;
+        document.getElementById('demoVideo')?.load();
+      }
+    }
+
+    initMedia();
+
     // Scroll reveal
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
