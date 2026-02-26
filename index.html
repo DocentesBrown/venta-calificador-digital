@@ -88,7 +88,7 @@
     .zoom-overlay{position:absolute; inset:auto 12px 12px 12px; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.78)); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,.34); border-radius:16px; padding:12px;}
     .zoom-overlay strong{display:block; font-size:1rem}.zoom-overlay span{color: rgba(22,50,74,.78); font-size:.92rem}
 
-    .thumbs{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:10px}
+    .thumbs{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px}
     .thumb{position:relative; border-radius:14px; overflow:hidden; border:1px solid rgba(36,73,110,.09); cursor:pointer; background:#eee7d3; aspect-ratio:16/10; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; padding:0; appearance:none; -webkit-appearance:none; }
     .thumb:hover{transform: translateY(-2px); box-shadow: 0 12px 20px rgba(20,35,53,.10)}
     .thumb img{width:100%; height:100%; object-fit:cover}
@@ -149,6 +149,7 @@
       .floating-card.fc1{ left:2%; top:8%; }
       .floating-card.fc2{ right:2%; bottom:10%; }
       .floating-card.fc3{ left:1%; top:62%; }
+      .thumbs{ grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width:640px){
       .showcase{ gap:14px; }
@@ -252,12 +253,22 @@
             <div class="thumbs" id="thumbs">
               <button class="thumb active" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img1" data-title="Pantalla principal" data-sub="Vista general de estudiantes y porcentajes" data-overlay-title="Asistencia y seguimiento en una sola vista" data-overlay-sub="Ideal para registrar y consultar rápidamente en clase."><img src="" alt="Miniatura principal" data-thumb-key="img1" /></button>
               <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img2" data-title="Tarjeta de toma de asistencia" data-sub="Acciones visibles y claras por estudiante" data-overlay-title="Botones grandes para decidir rápido" data-overlay-sub="Presente, ausente y revisar más tarde, todo en una tarjeta enfocada."><img src="" alt="Miniatura tarjeta" data-thumb-key="img2" /></button>
+              <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img3" data-title="Pantalla 3" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><img src="" alt="Miniatura 3" data-thumb-key="img3" /></button>
+              <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img4" data-title="Pantalla 4" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><img src="" alt="Miniatura 4" data-thumb-key="img4" /></button>
+              <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img5" data-title="Pantalla 5" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><img src="" alt="Miniatura 5" data-thumb-key="img5" /></button>
+              <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img6" data-title="Pantalla 6" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><img src="" alt="Miniatura 6" data-thumb-key="img6" /></button>
+              <button class="thumb" type="button" data-kind="image" data-src="" data-fallback="" data-media-key="img7" data-title="Pantalla 7" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><img src="" alt="Miniatura 7" data-thumb-key="img7" /></button>
               <button class="thumb play" type="button" data-kind="video" data-src="" data-media-key="video1" data-title="Video demo" data-sub="Mostrá el flujo real de uso" data-overlay-title="Demostración en movimiento" data-overlay-sub="Una mini demo vende mejor que mil explicaciones."><img src="" alt="Ver video demo" data-thumb-key="img1" /></button>
             </div>
             <div class="mobile-media-deck" id="mobileMediaDeck" aria-label="Galería móvil deslizable">
               <div class="deck-wrap" id="deckWrap">
                 <button class="deck-card" type="button" data-kind="image" data-media-key="img1" data-src="" data-fallback="" data-title="Pantalla principal" data-sub="Vista general de estudiantes y porcentajes" data-overlay-title="Asistencia y seguimiento en una sola vista" data-overlay-sub="Ideal para registrar y consultar rápidamente en clase."><span class="deck-chip">Imagen 1</span><img class="deck-media" src="" alt="Imagen 1" data-thumb-key="img1" /></button>
                 <button class="deck-card" type="button" data-kind="image" data-media-key="img2" data-src="" data-fallback="" data-title="Tarjeta de toma de asistencia" data-sub="Acciones visibles y claras por estudiante" data-overlay-title="Botones grandes para decidir rápido" data-overlay-sub="Presente, ausente y revisar más tarde, todo en una tarjeta enfocada."><span class="deck-chip">Imagen 2</span><img class="deck-media" src="" alt="Imagen 2" data-thumb-key="img2" /></button>
+                <button class="deck-card" type="button" data-kind="image" data-media-key="img3" data-src="" data-fallback="" data-title="Pantalla 3" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><span class="deck-chip">Imagen 3</span><img class="deck-media" src="" alt="Imagen 3" data-thumb-key="img3" /></button>
+                <button class="deck-card" type="button" data-kind="image" data-media-key="img4" data-src="" data-fallback="" data-title="Pantalla 4" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><span class="deck-chip">Imagen 4</span><img class="deck-media" src="" alt="Imagen 4" data-thumb-key="img4" /></button>
+                <button class="deck-card" type="button" data-kind="image" data-media-key="img5" data-src="" data-fallback="" data-title="Pantalla 5" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><span class="deck-chip">Imagen 5</span><img class="deck-media" src="" alt="Imagen 5" data-thumb-key="img5" /></button>
+                <button class="deck-card" type="button" data-kind="image" data-media-key="img6" data-src="" data-fallback="" data-title="Pantalla 6" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><span class="deck-chip">Imagen 6</span><img class="deck-media" src="" alt="Imagen 6" data-thumb-key="img6" /></button>
+                <button class="deck-card" type="button" data-kind="image" data-media-key="img7" data-src="" data-fallback="" data-title="Pantalla 7" data-sub="Otra vista de la app" data-overlay-title="Más pantallas reales" data-overlay-sub="Mostrá diferentes recorridos de uso."><span class="deck-chip">Imagen 7</span><img class="deck-media" src="" alt="Imagen 7" data-thumb-key="img7" /></button>
                 <button class="deck-card video" type="button" data-kind="video" data-media-key="video1" data-src="" data-title="Video demo" data-sub="Mostrá el flujo real de uso" data-overlay-title="Demostración en movimiento" data-overlay-sub="Una mini demo vende mejor que mil explicaciones."><span class="deck-chip">Video</span><img class="deck-media" src="" alt="Video demo" data-thumb-key="img1" /></button>
               </div>
               <div class="deck-hint">Deslizá la tarjeta superior hacia la izquierda para ver la siguiente</div>
@@ -330,6 +341,11 @@
     const MEDIA_CANDIDATES = {
       img1: ['Imagen1.jpg','Imagen1.jpeg','imagen1.jpg','imagen1.jpeg','Imagen1.JPG','Imagen1.JPEG'],
       img2: ['Imagen2.jpg','Imagen2.jpeg','imagen2.jpg','imagen2.jpeg','Imagen2.JPG','Imagen2.JPEG'],
+      img3: ['Imagen3.jpg','Imagen3.jpeg','imagen3.jpg','imagen3.jpeg','Imagen3.JPG','Imagen3.JPEG'],
+      img4: ['Imagen4.jpg','Imagen4.jpeg','imagen4.jpg','imagen4.jpeg','Imagen4.JPG','Imagen4.JPEG'],
+      img5: ['Imagen5.jpg','Imagen5.jpeg','imagen5.jpg','imagen5.jpeg','Imagen5.JPG','Imagen5.JPEG'],
+      img6: ['Imagen6.jpg','Imagen6.jpeg','imagen6.jpg','imagen6.jpeg','Imagen6.JPG','Imagen6.JPEG'],
+      img7: ['Imagen7.jpg','Imagen7.jpeg','imagen7.jpg','imagen7.jpeg','Imagen7.JPG','Imagen7.JPEG'],
       video1: ['Video1.mp4','video1.mp4','Video1.MP4']
     };
 
@@ -381,8 +397,20 @@
       if(mainMediaImg) mainMediaImg.src = fallback1;
       document.querySelectorAll('[data-thumb-key="img1"]').forEach(el => { el.src = fallback1; });
       document.querySelectorAll('[data-thumb-key="img2"]').forEach(el => { el.src = fallback2; });
-      document.querySelectorAll('[data-media-key="img1"]').forEach(btn => { btn.dataset.src = fallback1; btn.dataset.fallback = fallback2; });
-      document.querySelectorAll('[data-media-key="img2"]').forEach(btn => { btn.dataset.src = fallback2; btn.dataset.fallback = fallback1; });
+      const resolvedImages = { img1, img2 };
+      for (let i = 3; i <= 7; i++) {
+        resolvedImages[`img${i}`] = await resolveMedia(`img${i}`);
+      }
+      for (let i = 1; i <= 7; i++) {
+        const key = `img${i}`;
+        const src = resolvedImages[key] || img1 || img2 || '';
+        const fallback = (i % 2 === 0 ? (img1 || img2 || '') : (img2 || img1 || ''));
+        document.querySelectorAll(`[data-thumb-key="${key}"]`).forEach(el => { el.src = src; });
+        document.querySelectorAll(`[data-media-key="${key}"]`).forEach(btn => {
+          btn.dataset.src = src;
+          btn.dataset.fallback = fallback;
+        });
+      }
       document.querySelectorAll('[data-media-key="video1"]').forEach(btn => { if(video1) btn.dataset.src = video1; });
       const videoSource = document.querySelector('#demoVideo source');
       const videoEl = document.getElementById('demoVideo');
